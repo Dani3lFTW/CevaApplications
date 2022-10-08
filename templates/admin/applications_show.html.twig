@@ -1,20 +1,46 @@
 
-{% extends 'base.html.twig' %}
+{% extends 'admin_base.html.twig' %}
 
-{% block stylesheets %}
-    <link href="{{ asset('/css/admin/applications.css') }}" type="text/css" rel="stylesheet" />
+
+{% block page_content %}
+
+        <!--main content wrapper-->
+        <div class="mcw mt-5">
+            <!--navigation here-->
+            <!--main content view-->
+                <div>
+                        <div class="container">
+                                <div class="card" >
+                                        <table class="table table-bordered table-hover table-striped">
+                                            <tr>
+
+                                                <th class="col-1">ID</th>
+                                                <th class="col-3">Name</th>
+                                                <th class="col-4">Created On</th>
+                                                <th class="col-3">Status</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                                {% for app in array %}
+                                            <tr>
+                                                <td class="col-1">{{ app.id }}</td>
+                                                <td class="col-2">{{ app.name }}</td>
+                                                <td class="col-4">{{ app.date }}</td>
+                                                {% if not app.closed %}
+                                                    <td class="col-2 align-middle"><span class="badge rounded-pill bg-success">Opened</span></td>
+                                                {% else %}
+                                                    <td class="col-2 align-middle"><span class="badge rounded-pill bg-danger">Closed</span></td>
+                                                {% endif %}
+                                                <td><a type="button" href="{{ path('application_view', {'application':app.id}) }}" class="btn btn-outline-primary">View</a></td>
+                                            </tr>
+                                            {% endfor %}
+                                            </tr>
+                                        </table>
+
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 {% endblock %}
 
-{% block body %}
-
-    <body style="background-color: slategrey">
-
-    <h1 class="navbar-default">test</h1>
-
-    {% for app in array %}
-        <li>{{ app.id }} {{ app.name }}</li>
-    {% endfor %}
-
-    </body>
-
-{% endblock %}

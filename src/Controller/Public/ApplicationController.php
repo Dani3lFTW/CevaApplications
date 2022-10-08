@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Contracts\Service\Attribute\Required;
 
 class ApplicationController extends AbstractController
@@ -20,12 +21,20 @@ class ApplicationController extends AbstractController
     #[Route('/', name: 'index')]
     public function index(Request $request) : Response
     {
+
+
         $application = new ApplicationEntity();
 
         $form = $this->createForm(ApplicationType::class, $application);
 
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
+
+            $date = new \DateTime('now');
+            $createdDate = $date->format('d-m-Y H:i');
+
+            $application->setDate($createdDate);
+
             $application = $form->getData();
 
             $this->entityManager->persist($application);
