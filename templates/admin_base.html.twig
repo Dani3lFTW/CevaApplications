@@ -1,33 +1,60 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
+{% block sidebar %}
 
-    <!--msb: main sidebar-->
-    <div class="msb"  id="msb">
-        <nav class="navbar navbar-default" role="navigation">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <div class="brand-wrapper">
-                    <!-- Brand -->
-                    <div class="brand-name-wrapper" style="padding: 6px">
-                        <a class="navbar-brand" href="#">
-                            &nbsp;&nbsp;ᴀᴘᴘʟɪᴄᴀᴛɪᴏɴꜱ
-                        </a>
-                    </div>
-
-                </div>
-
+    <div class="main-container d-flex">
+        <div class="sidebar bg-dark" id="side_nav">
+            <div class="header-box px-2 pt-3 pb-4">
+                <h3 class="fs-5"><span class="bg-white text-dark rounded shadow px-2 me-2">PANEL</span><span class="text-white fw-light">Applications</span></h3>
             </div>
 
-            <!-- Main Menu -->
-            <div class="side-menu-container">
-                <ul class="nav navbar-nav">
+                <hr class="h-color">
+                <ul class="list-unstyled px-2 mt-4">
+                    <li class="active"><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-home"></i> Dashboard</a></li>
+                    <li class=""><a href="/applications/list" class="text-decoration-none px-3 py-2 d-block d-flex justify-content-between">
+                            <span><i class="fal fa-list"></i> Applications</span>
 
-                    <li><a href="/applications"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-                    <li class="active"><a href="#"><i class="fa fa-puzzle-piece"></i> Applications</a></li>
+                            {% set numRows = 0 %}
+                            {% for app in array %}
+                                {% set numRows = numRows + 1 %}
+                            {% endfor %}
+                            <span class="bg-white rounded-pill text-dark py-0 px-1  ">{{ numRows }}</span>
+                        </a>
+                    </li>
+
                 </ul>
-            </div><!-- /.navbar-collapse -->
-        </nav>
-    </div></div>
+
+
+                <div class="b-mt" style="background-color: #1e1e1f; padding: 25px"></div>
+
+        </div>
+
+            <div class="content">
+
+                <!-- Sidebar -->
+                <nav class="navbar navbar-dark bg-dark navbar-expand-lg" style="margin-top: 0px;">
+                    <div class="container-fluid">
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0"> </ul>
+                            <form class="d-flex">
+                                <input class="form-control me-sm-2" type="text" placeholder="Search">
+                                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                </nav>
+                <!--------------------------------------------------------------------------------------------------->
+
+
+                {% block page_content %} {% endblock %}
+            </div>
+    </div>
+
+
+{% endblock %}
+
+{% block body %}
+
+
 
 {% endblock %}

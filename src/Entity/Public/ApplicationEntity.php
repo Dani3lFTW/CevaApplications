@@ -2,6 +2,7 @@
 
 namespace App\Entity\Public;
 
+use Doctrine\DBAL\Types\StringType;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
@@ -29,11 +30,11 @@ class ApplicationEntity
     protected string $qualities;
     #[Column(nullable: true)]
     protected string $comments;
+    #[Column]
+    protected int $closed = 0;
 
-    /**
-     * @return
-     */
-
+    #[Column]
+    protected string $date = 'CURRENT_TIMESTAMP';
 
     public function getName(): string
     {
@@ -158,6 +159,38 @@ class ApplicationEntity
     public function setId(int $id): void
     {
         $this->id = $id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getClosed()
+    {
+        return $this->closed;
+    }
+
+    /**
+     * @param mixed $closed
+     */
+    public function setClosed($closed): void
+    {
+        $this->closed = $closed;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDate(): string
+    {
+        return $this->date;
+    }
+
+    /**
+     * @param string $date
+     */
+    public function setDate(string $date): void
+    {
+        $this->date = $date;
     }
 
 

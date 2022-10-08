@@ -1,6 +1,67 @@
 {% extends 'admin_base.html.twig' %}
 
-{% block body %}
+{% block page_content %}
+
+    <div class="container mt-5">
+        <div class="card col-8">
+            <div class="card-header">
+                Application #{{ application.id }}
+                <div class="float-end">
+                    {% if not application.closed %}
+                        <span class="badge rounded-pill bg-success">Opened</span>
+                    {% else %}
+                        <span class="badge rounded-pill bg-danger">Closed</span>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <span class="fs-5"><i class="far fa-user-tie"></i> {{ application.name }}
+
+                            <span class="view-email">
+                                <span href="#" data-toggle="tooltip" title="This user is {{ application.age }} years old."><i class="far fa-birthday-cake"></i> {{ application.age }}</span>
+                            </span>
+
+
+                        </span>
+                        <span class="float-end"><span class="badge bg-primary"><i class="fab fa-discord"></i> {{ application.discord }}</span></span>
+
+                        <br>
+                    <li class="list-group-item"><i class="fal fa-address-card"></i> {{ application.about }}
+                        <br>
+                        <br>
+                        <i class="far fa-tag fs-4"></i></i> <span class="fs-3">Qualities</span>
+                    </li>
+
+
+                    <li class="list-group-item">{{ application.qualities }}
+
+                        <br>
+                        <br>
+                        <i class="far fa-comments-alt fs-3"></i> <span class="fs-3"> Comments</span>
+                    </li>
+                    <li class="list-group-item">{{ application.comments }}
+
+                    </li>
+                    </li>
+
+                </ul>
+
+
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+
+
+
+
 
 {% endblock %}
 
